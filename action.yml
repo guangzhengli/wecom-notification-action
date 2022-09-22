@@ -1,14 +1,17 @@
 name: 'Wecom Notification Action'
-description: 'A Github Action for wecom / wechat work.'
+description: '企业微信机器人消息发送，支持内容自定义，配置模版'
+branding:
+  icon: 'send'  
+  color: 'green'
 inputs:
   message:
-    description: "Send notification message"
+    description: "需要发送的内容"
     required: true
   webhook:
-    description: "wework chat robot webhook URL"
+    description: "企业微信机器人 webhook url key, 即 webhook/send?key=xxx, 配置为xxx即可"
     required: true
   is_at_all:
-    description: "Is @all?"
+    description: "是否 @all @所有人?"
     required: false
     default: 'false'
 runs:
