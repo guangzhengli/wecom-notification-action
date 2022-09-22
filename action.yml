@@ -1,9 +1,16 @@
-name: 'Notification Action Name'
-description: 'A Github Action for different chat Apps like slack, teams, mattermost'
+name: 'Wecom Notification Action'
+description: 'A Github Action for wecom / wechat work.'
 inputs:
   message:
     description: "Send notification message"
     required: true
+  webhook:
+    description: "wework chat robot webhook URL"
+    required: true
+  is_at_all:
+    description: "Is @all?"
+    required: false
+    default: 'false'
 runs:
   using: 'composite'
   steps:
@@ -17,6 +24,8 @@ runs:
     - name: Pass Inputs to Shell
       run: |
           echo "INPUT_MESSAGE=${{ inputs.message }}" >> $GITHUB_ENV
+          echo "INPUT_WEBHOOK=${{ inputs.webhook }}" >> $GITHUB_ENV
+          echo "INPUT_IS_AT_ALL=${{ inputs.is_at_all }}" >> $GITHUB_ENV
       shell: bash
     - name: Send notification message
       id: send-notification-message
