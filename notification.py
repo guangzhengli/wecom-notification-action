@@ -3,7 +3,7 @@ from corpwechatbot.chatbot import CorpWechatBot
 
 def send_notification():
     bot = CorpWechatBot(key=get_webhook_url())
-    if (is_at_all()):
+    if (is_at_all() == 'true'):
         bot.send_text(content=get_message_content(), mentioned_list=['@all'])
     else:
         bot.send_text(content=get_message_content())
