@@ -1,12 +1,9 @@
 name: 'Wecom Notification Action'
-description: '企业微信机器人消息发送，支持内容自定义，配置模版'
+description: '企业微信机器人消息发送, 支持不同来源的消息, 包括直接输入, 文件内容, HTTP Response Body等'
 branding:
   icon: 'send'  
   color: 'green'
 inputs:
-  message:
-    description: "需要发送的内容"
-    required: true
   webhook:
     description: "企业微信机器人 webhook url key, 即 webhook/send?key=xxx, 配置为xxx即可"
     required: true
@@ -14,6 +11,25 @@ inputs:
     description: "是否 @all @所有人?"
     required: false
     default: 'false'
+  type:
+    description: "消息类型, 是否是从文件中读取消息, 类型包括:message, file, http"
+    required: false
+    default: 'message'
+  message:
+    description: "如果消息类型选择 message, 需要发送的内容"
+    required: false
+  file_name:
+    description: "如果消息类型选择 file, 那么就需要输入文件名称, 默认取文件第一行的内容"
+    required: false
+  file_read_type:
+    description: "如果消息类型选择 file, 那么是选择只读取某一行, 还是读取文件所有内容, first:第一行; last:最后一行; random:随意一行; all:所有内容"
+    required: false
+    default: 'first'
+  file_write_type:
+    description: "读取完成后, 是否进行写操作, loop:循环, 例如第一行放置最后一行; delete:删除"
+    required: false
+    default: 'loop'
+  
 runs:
   using: 'composite'
   steps:
