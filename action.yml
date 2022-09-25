@@ -26,7 +26,7 @@ inputs:
     required: false
     default: 'first'
   file_write_type:
-    description: "读取完成后, 是否进行写操作, loop:循环, 例如第一行放置最后一行; delete:删除"
+    description: "读取完成后, 是否进行写操作, loop:循环, 第一行放置最后一行; delete:删除, nothing:不操作"
     required: false
     default: 'loop'
   
@@ -42,9 +42,13 @@ runs:
       shell: bash
     - name: Pass Inputs to Shell
       run: |
-          echo "INPUT_MESSAGE=${{ inputs.message }}" >> $GITHUB_ENV
           echo "INPUT_WEBHOOK=${{ inputs.webhook }}" >> $GITHUB_ENV
           echo "INPUT_IS_AT_ALL=${{ inputs.is_at_all }}" >> $GITHUB_ENV
+          echo "INPUT_TYPE=${{ inputs.type }}" >> $GITHUB_ENV
+          echo "INPUT_MESSAGE=${{ inputs.message }}" >> $GITHUB_ENV
+          echo "INPUT_FILE_NAME=${{ inputs.file_name }}" >> $GITHUB_ENV
+          echo "INPUT_FILE_READ_TYPE=${{ inputs.file_read_type }}" >> $GITHUB_ENV
+          echo "INPUT_FILE_WRITE_TYPE=${{ inputs.file_write_type }}" >> $GITHUB_ENV
       shell: bash
     - name: Send notification message
       id: send-notification-message

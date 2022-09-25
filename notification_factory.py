@@ -8,4 +8,4 @@ class NotificationFactory:
         elif type == 'file':
             return FileNotification()
         else:
-            raise ValueError(type)
+            raise ValueError(f"error parse notification type: {type}")

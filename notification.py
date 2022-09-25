@@ -1,11 +1,9 @@
 import os
 from corpwechatbot.chatbot import CorpWechatBot
-from file_notification import FileNotification
-from message_notification import MessageNotification
 from notification_factory import NotificationFactory
 
 def send_notification():
-
+    message = get_message_by_type()
     bot = CorpWechatBot(key=get_webhook_url())
     if (is_at_all() == 'true'):
         bot.send_text(content=message, mentioned_list=['@all'])
@@ -16,7 +14,7 @@ def send_notification():
 def get_message_by_type():
     type = os.environ.get("INPUT_TYPE")
     factory = NotificationFactory()
-    message = factory.get_notification(type).get_message()
+    return factory.get_notification(type).get_message()
     
 def get_webhook_url():
     webhook = os.environ.get("INPUT_WEBHOOK")
