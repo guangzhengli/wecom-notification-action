@@ -1,12 +1,11 @@
+from file_notification import FileNotification
+from message_notification import MessageNotification
+
 class NotificationFactory:
-    def __init__(self):
-        self._creators = {}
-
-    def register_format(self, format, creator):
-        self._creators[format] = creator
-
-    def get_serializer(self, format):
-        creator = self._creators.get(format)
-        if not creator:
-            raise ValueError(format)
-        return creator()
+    def get_notification(self, type):
+        if type == 'message':
+            return MessageNotification()
+        elif type == 'file':
+            return FileNotification()
+        else:
+            raise ValueError(type)

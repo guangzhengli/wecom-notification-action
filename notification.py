@@ -1,20 +1,22 @@
 import os
 from corpwechatbot.chatbot import CorpWechatBot
+from file_notification import FileNotification
+from message_notification import MessageNotification
+from notification_factory import NotificationFactory
 
 def send_notification():
+
     bot = CorpWechatBot(key=get_webhook_url())
     if (is_at_all() == 'true'):
-        bot.send_text(content=get_message_content(), mentioned_list=['@all'])
+        bot.send_text(content=message, mentioned_list=['@all'])
     else:
-        bot.send_text(content=get_message_content())
-    print(f"send notification successd, message: {get_message_content()}")
+        bot.send_text(content=message)
+    print(f"send notification successd, message: {message}")
 
-def get_message_content():
-    message = os.environ.get("INPUT_MESSAGE")
-    if message:
-        return message
-    else:
-        raise ValueError("message content is empty")
+def get_message_by_type():
+    type = os.environ.get("INPUT_TYPE")
+    factory = NotificationFactory()
+    message = factory.get_notification(type).get_message()
     
 def get_webhook_url():
     webhook = os.environ.get("INPUT_WEBHOOK")
