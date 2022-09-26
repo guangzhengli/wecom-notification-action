@@ -1,4 +1,4 @@
-name: wecom robot
+name: wecom/wechat-work robot notification action
 
 on:
   schedule:
