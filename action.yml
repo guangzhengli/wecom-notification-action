@@ -54,3 +54,8 @@ runs:
       id: send-notification-message
       run: python notification.py
       shell: bash
+    - name: GitHub Repo Auto Commit
+      if: ${{ env.INPUT_TYPE == 'file' }}
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Automated Change

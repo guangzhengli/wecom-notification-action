@@ -1,6 +1,6 @@
 name: wecom robot
 
-# on: push
+on: push
 
 jobs:
   build:
@@ -12,5 +12,9 @@ jobs:
         uses: guangzhengli/wecom-notification-action@main
         with:
           webhook: ${{ secrets.WECOM_WEBHOOK_KEY}}
-          is_at_all: 'false'
-          message: test content
+          is_at_all: "false"
+          type: "file"
+          message: "test content"
+          file_name: "members.txt"
+          file_read_type: "first"
+          file_write_type: "loop"
