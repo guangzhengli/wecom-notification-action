@@ -22,7 +22,7 @@ inputs:
     description: "如果消息类型选择 file, 那么就需要输入文件名称, 默认取文件第一行的内容"
     required: false
   file_read_type:
-    description: "如果消息类型选择 file, 那么是选择只读取某一行, 还是读取文件所有内容, first:第一行; last:最后一行; random:随意一行; all:所有内容"
+    description: "如果消息类型选择 file, 那么是选择只读取某一行, 还是读取文件所有内容, first:第一行; random:随意一行; all:所有内容"
     required: false
     default: 'first'
   file_write_type:
